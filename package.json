@@ -1,0 +1,65 @@
+{
+  "name": "@indieasy.software/indieasy-engine",
+  "version": "0.0.1",
+  "description": "Tutorial Tip library.",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "storybook": "start-storybook -p 9001",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "start": "start-storybook -p 9001"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DGordonEFS/indieasy-engine.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "react",
+    "shared",
+    "components",
+    "components"
+  ],
+  "author": "Dale Donahue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwlsn/rinse-react/issues"
+  },
+  "homepage": "https://github.com/cwlsn/rinse-react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@storybook/addon-actions": "^4.0.0-alpha.20",
+    "@storybook/react": "^5.3.10",
+    "@tulipjs/eslint-config": "^1.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^2.0.0-alpha.20",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5"
+  },
+  "peerDependencies": {
+    "react": ">= 16.12.0",
+    "react-dom": ">= 16.8.6",
+    "react-redux": ">= 7.1.3",
+    "redux": ">= 4.0.5"
+  },
+  "files": [
+    "/build"
+  ]
+}
