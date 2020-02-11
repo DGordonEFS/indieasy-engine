@@ -6,9 +6,7 @@ import TutorialManager, {
 } from './scripts/TutorialManager';
 import TutorialTip from './scripts/TutorialTip';
 import TutorialGroup from './scripts/TutorialGroup';
-import { getStore } from './store/store';
-import { setStore } from './store/store';
-import { addReducer } from './store/store';
+import { getStore, setStore, addReducer, setupForTesting } from './store/store';
 import * as actions from './store/actions/actions';
 import * as actionTypes from './store/actions/actionTypes';
 
@@ -23,6 +21,7 @@ export default {
 	getStore,
 	setStore,
 	addReducer,
+	setupForTesting,
 	actions,
 	actionTypes,
 };
@@ -37,5 +36,6 @@ export { TutorialGroup };
 export { getStore };
 export { setStore };
 export { addReducer };
+export { setupForTesting };
 export { actions };
 export { actionTypes };

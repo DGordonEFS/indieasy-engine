@@ -23,6 +23,11 @@ describe('TutorialTips index', () => {
 		expect(tutorialTips.getStore()).toBe(store);
 	});
 
+	test('setupForTesting', () => {
+		tutorialTips.setupForTesting;
+		expect(tutorialTips.getStore()).not.toBeNull();
+	});
+
 	test('TutorialManager', () => {
 		expect(TutorialManager().constructor.name).toBe('TutorialManager');
 	});

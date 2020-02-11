@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 import reducer from './reducers/reducer';
 
@@ -12,4 +12,10 @@ export const setStore = (store) => {
 
 export const addReducer = (reducers) => {
 	return combineReducers({ ...reducers, tutorialTips: reducer });
+};
+
+export const setupForTesting = () => {
+	const rootReducer = addReducer({});
+	const store = createStore(rootReducer);
+	setStore(store);
 };
