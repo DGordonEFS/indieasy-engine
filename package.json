@@ -1,7 +1,7 @@
 {
   "name": "@indieasy.software/indieasy-engine",
   "version": "0.0.1",
-  "description": "Tutorial Tip library.",
+  "description": "Core engine library.",
   "main": "build/index.js",
   "scripts": {
     "test": "jest",
