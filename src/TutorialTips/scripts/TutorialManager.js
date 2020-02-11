@@ -51,9 +51,11 @@ export class TutorialManager {
 	};
 
 	setCurrentTip = (id) => {
-		id = id.toUpperCase();
-		if (id && !this.getTip(id)) {
-			throw `TutorialManager.setCurrentTip -- invalid tip id ${id}`;
+		if (id) {
+			id = id.toUpperCase();
+			if (!this.getTip(id)) {
+				throw `TutorialManager.setCurrentTip -- invalid tip id ${id}`;
+			}
 		}
 		getStore().dispatch(actions.setCurrentTip(id));
 	};
@@ -70,18 +72,7 @@ export class TutorialManager {
 
 		if (!tip) return;
 
-		let id;
-
-		switch (typeof tip.next) {
-			case 'string':
-				id = tip.next;
-				break;
-			case 'function':
-				id = tip.next();
-				break;
-			default:
-				return;
-		}
+		const id = tip.next.toString() === tip.next ? tip.next : tip.next();
 
 		this.setCurrentTip(id);
 	};
@@ -91,18 +82,7 @@ export class TutorialManager {
 
 		if (!tip) return;
 
-		let id;
-
-		switch (typeof tip.prev) {
-			case 'string':
-				id = tip.prev;
-				break;
-			case 'function':
-				id = tip.prev();
-				break;
-			default:
-				return;
-		}
+		const id = tip.prev.toString() === tip.prev ? tip.prev : tip.prev();
 
 		this.setCurrentTip(id);
 	};
