@@ -4,7 +4,7 @@
   "description": "Tutorial Tip library.",
   "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001",
     "docz:dev": "docz dev",
@@ -36,6 +36,7 @@
     "@storybook/react": "^5.3.10",
     "@tulipjs/eslint-config": "^1.1.1",
     "babel-cli": "^6.26.0",
+    "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -44,6 +45,9 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "react-test-renderer": "^16.12.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.0"
   },

@@ -1,10 +1,15 @@
+import {combineReducer } from 'redux';
+
 import reducer from './reducers/reducer';
 
 const _store;
 
 export const getStore = () => _store;
 
-export const initStore = (store, combineReducer) => {
+export const setStore = (store) => {
   _store = store;
-  combineReducer.tutorialTips = reducer;
+}
+
+export const addReducer = reducers => {
+  return combineReducer({...reducers, tutorialTips:reducer});
 }

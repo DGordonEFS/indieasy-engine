@@ -6,7 +6,6 @@ export default class TutorialTip {
 	next;
 	prev;
 	onStoreChanged;
-	buttonText;
 
 	constructor(id, type, title, text, next, prev, onStoreChanged, buttonText) {
 		this.id = id;
@@ -16,6 +15,5 @@ export default class TutorialTip {
 		this.next = next;
 		this.prev = prev;
 		this.onStoreChanged = onStoreChanged;
-		this.buttonText = buttonText;
 	}
 }
