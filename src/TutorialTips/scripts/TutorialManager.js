@@ -1,42 +1,68 @@
-import actions from '../store/actions/actions';
-import getStore from '../store/store';
+import * as actions from '../store/actions/actions';
+import { getStore } from '../store/store';
 
-export class TutorialTipManager {
+export class TutorialManager {
+	id;
 	_tips = {};
-	_watchedTips = [];
+	_watchedTips;
+
+	constructor(id) {
+		this.id = id.toUpperCase();
+	}
 
 	addTip = (tip) => {
-		this._tips[tip.id.toUpperCase()] = tip;
-		this._watchedTips = this._tips.filter((x) => x.onStoreChanged);
+		this._tips[tip.id] = tip;
+		delete this._watchedTips;
+
+		return tip;
 	};
 
 	removeTip = (id) => {
 		delete this._tips[id.toUpperCase()];
-		this._watchedTips = this._tips.filter((x) => x.onStoreChanged);
+		delete this._watchedTips;
+	};
+
+	clear = () => {
+		this._tips = {};
+		delete this._watchedTips;
 	};
 
 	getTip = (id) => {
 		return this._tips[id.toUpperCase()];
 	};
 
+	getTips = () => {
+		return Object.values(this._tips);
+	};
+
 	getWatchedTips = () => {
+		if (!this._watchedTips) {
+			this._watchedTips = Object.values(this._tips).filter(
+				(x) => x.onStoreChange
+			);
+		}
 		return [...this._watchedTips];
 	};
 
 	addGroup = (group) => {
-		group.getTips.forEach((tip) => {
+		group.getTips().forEach((tip) => {
 			this.addTip(tip);
 		});
 	};
 
-	getCurrentTip = () => {
-		if (!getStore().currentTipId) return null;
-
-		return this._tips[store.currentTipId];
+	setCurrentTip = (id) => {
+		id = id.toUpperCase();
+		if (id && !this.getTip(id)) {
+			throw `TutorialManager.setCurrentTip -- invalid tip id ${id}`;
+		}
+		getStore().dispatch(actions.setCurrentTip(id));
 	};
 
-	setCurrentTip = (id) => {
-		getStore().dispatch(actions.setCurrentTip(id));
+	getCurrentTip = () => {
+		const currentTipId = getStore().getState().tutorialTips.currentTip;
+		if (!currentTipId) return null;
+
+		return this.getTip(currentTipId);
 	};
 
 	nextTip = () => {
@@ -47,14 +73,14 @@ export class TutorialTipManager {
 		let id;
 
 		switch (typeof tip.next) {
-			case String:
+			case 'string':
 				id = tip.next;
 				break;
-			case Function:
+			case 'function':
 				id = tip.next();
 				break;
 			default:
-				break;
+				return;
 		}
 
 		this.setCurrentTip(id);
@@ -68,14 +94,14 @@ export class TutorialTipManager {
 		let id;
 
 		switch (typeof tip.prev) {
-			case String:
+			case 'string':
 				id = tip.prev;
 				break;
-			case Function:
+			case 'function':
 				id = tip.prev();
 				break;
 			default:
-				break;
+				return;
 		}
 
 		this.setCurrentTip(id);
@@ -86,11 +112,41 @@ export class TutorialTipManager {
 	};
 }
 
-export const instance = new TutorialTipManager();
+const managers = {};
+let activeManagerId = '';
+managers[activeManagerId] = new TutorialManager('');
 
-getStore().subscribe(() => {
-	const state = getStore().getState();
-	instance.getWatchedTips().forEach((tip) => {
-		tip.onStoreChanged(state);
-	});
-});
+export const createManager = (id) => {
+	const manager = new TutorialManager(id);
+	managers[id.toUpperCase()] = manager;
+	return manager;
+};
+
+export const getManager = (id) => {
+	return managers[id.toUpperCase()];
+};
+
+export const setActiveManager = (id) => {
+	activeManagerId = id.toUpperCase();
+};
+
+export const getActiveManager = () => {
+	return managers[activeManagerId];
+};
+
+let init = false;
+export default () => {
+	if (!init) {
+		init = true;
+		getStore().subscribe(() => {
+			const state = getStore().getState();
+			const activeManager = getActiveManager();
+
+			activeManager.getWatchedTips().forEach((tip) => {
+				if (tip.watchStore) tip.onStoreChange(state);
+			});
+		});
+	}
+
+	return managers[''];
+};

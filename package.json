@@ -4,7 +4,7 @@
   "description": "Tutorial Tip library.",
   "main": "build/index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001",
     "docz:dev": "docz dev",

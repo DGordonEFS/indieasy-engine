@@ -1,4 +1,9 @@
-import { TutorialTip } from 'TutorialTips';
+import { createStore } from 'redux';
+import tutorialTips, { TutorialTip } from 'TutorialTips';
+
+const rootReducer = tutorialTips.addReducer({});
+const store = createStore(rootReducer);
+tutorialTips.setStore(store);
 
 describe('TutorialTip', () => {
 	test('it has a working constructor', () => {
@@ -9,15 +14,17 @@ describe('TutorialTip', () => {
 			'Text',
 			't03',
 			't01',
-			() => true
+			() => true,
+			true
 		);
 
-		expect(TutorialTipManager.getTip(tip.id)).toBe('t02');
-		expect(TutorialTipManager.getTip(tip.type)).toBe('popup');
-		expect(TutorialTipManager.getTip(tip.title)).toBe('Title');
-		expect(TutorialTipManager.getTip(tip.text)).toBe('Text');
-		expect(TutorialTipManager.getTip(tip.next)).toBe('t03');
-		expect(TutorialTipManager.getTip(tip.prev)).toBe('t01');
-		expect(TutorialTipManager.getTip(tip.onStoreChange())).toBe(true);
+		expect(tip.id).toBe('T02');
+		expect(tip.type).toBe('popup');
+		expect(tip.title).toBe('Title');
+		expect(tip.text).toBe('Text');
+		expect(tip.next).toBe('t03');
+		expect(tip.prev).toBe('t01');
+		expect(tip.onStoreChange()).toBe(true);
+		expect(tip.watchStore).toBe(true);
 	});
 });
