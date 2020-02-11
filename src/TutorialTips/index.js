@@ -9,6 +9,8 @@ import TutorialGroup from './scripts/TutorialGroup';
 import { getStore } from './store/store';
 import { setStore } from './store/store';
 import { addReducer } from './store/store';
+import * as actions from './store/actions/actions';
+import * as actionTypes from './store/actions/actionTypes';
 
 export default {
 	TutorialManager,
@@ -21,6 +23,8 @@ export default {
 	getStore,
 	setStore,
 	addReducer,
+	actions,
+	actionTypes,
 };
 
 export { TutorialManager };
@@ -33,3 +37,5 @@ export { TutorialGroup };
 export { getStore };
 export { setStore };
 export { addReducer };
+export { actions };
+export { actionTypes };
