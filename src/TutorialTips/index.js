@@ -11,7 +11,6 @@ import * as actions from './store/actions/actions';
 import * as actionTypes from './store/actions/actionTypes';
 
 export default {
-	TutorialManager,
 	createManager,
 	getManager,
 	setActiveManager,
@@ -26,7 +25,6 @@ export default {
 	actionTypes,
 };
 
-export { TutorialManager };
 export { createManager };
 export { getManager };
 export { setActiveManager };

@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
 import tutorialTips, {
 	TutorialTip,
-	TutorialManager,
 	TutorialGroup,
+	getManager,
 } from 'TutorialTips';
 
 const rootReducer = tutorialTips.addReducer({});
@@ -10,14 +10,14 @@ const store = createStore(rootReducer);
 tutorialTips.setStore(store);
 
 describe('TutorialTips TutorialManager', () => {
-	test('TutorialManager()', () => {
-		expect(TutorialManager().constructor.name).toBe('TutorialManager');
+	test('getManager()', () => {
+		expect(getManager().constructor.name).toBe('TutorialManager');
 	});
 
 	test('add tip and get tip', () => {
 		const tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.addTip(tip);
 
 		expect(tutorialManager.getTip(tip.id)).toBe(tip);
@@ -27,7 +27,7 @@ describe('TutorialTips TutorialManager', () => {
 	test('remove tip', () => {
 		const tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.addTip(tip);
 		tutorialManager.removeTip(tip.id);
 
@@ -37,7 +37,7 @@ describe('TutorialTips TutorialManager', () => {
 	test('clear', () => {
 		const tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.addTip(tip);
 		tutorialManager.clear();
 
@@ -45,7 +45,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('getTips', () => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addTip(new TutorialTip('t01', 'popup', 'Title', 'Text'));
 		tutorialManager.addTip(new TutorialTip('t02', 'popup', 'Title', 'Text'));
@@ -56,7 +56,7 @@ describe('TutorialTips TutorialManager', () => {
 
 	test('getWatchedTips', () => {
 		let tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addTip(tip);
 		expect(tutorialManager.getWatchedTips().length).toBe(0);
@@ -73,7 +73,7 @@ describe('TutorialTips TutorialManager', () => {
 		group.addTip(new TutorialTip('t02', 'popup', 'Title', 'Text'));
 		group.addTip(new TutorialTip('t03', 'popup', 'Title', 'Text'));
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addGroup(group);
 
@@ -86,7 +86,7 @@ describe('TutorialTips TutorialManager', () => {
 	test('setCurrentTip and getCurrentTip', () => {
 		const tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addTip(tip);
 
@@ -101,7 +101,7 @@ describe('TutorialTips TutorialManager', () => {
 		group.addTip(new TutorialTip('t02', 'popup', 'Title', 'Text'));
 		group.addTip(new TutorialTip('t03', 'popup', 'Title', 'Text'));
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addGroup(group);
 		tutorialManager.setCurrentTip('T01');
@@ -116,7 +116,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('next tip with id function', () => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		let tip = tutorialManager.addTip(
 			new TutorialTip('t01', 'popup', 'Title', 'Text')
@@ -145,7 +145,7 @@ describe('TutorialTips TutorialManager', () => {
 		group.addTip(new TutorialTip('t02', 'popup', 'Title', 'Text'));
 		group.addTip(new TutorialTip('t03', 'popup', 'Title', 'Text'));
 
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialManager.addGroup(group);
 		tutorialManager.setCurrentTip('T03');
@@ -160,7 +160,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('prev tip with id function', () => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		let tip = tutorialManager.addTip(
 			new TutorialTip('t02', 'popup', 'Title', 'Text')
@@ -195,7 +195,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('onStoreChange with active manager', (done) => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialTips.setActiveManager(tutorialManager.id);
 
@@ -220,7 +220,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('onStoreChange with inactive manager', () => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialTips.setActiveManager(tutorialManager.id);
 
@@ -242,7 +242,7 @@ describe('TutorialTips TutorialManager', () => {
 	});
 
 	test('onStoreChange set current TutorialTip', (done) => {
-		const tutorialManager = TutorialManager();
+		const tutorialManager = getManager();
 		tutorialManager.clear();
 		tutorialTips.setActiveManager(tutorialManager.id);
 

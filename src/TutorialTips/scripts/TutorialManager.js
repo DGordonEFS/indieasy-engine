@@ -102,20 +102,8 @@ export const createManager = (id) => {
 	return manager;
 };
 
-export const getManager = (id) => {
-	return managers[id.toUpperCase()];
-};
-
-export const setActiveManager = (id) => {
-	activeManagerId = id.toUpperCase();
-};
-
-export const getActiveManager = () => {
-	return managers[activeManagerId];
-};
-
 let init = false;
-export default () => {
+export const getManager = (id = '') => {
 	if (!init) {
 		init = true;
 		getStore().subscribe(() => {
@@ -128,5 +116,13 @@ export default () => {
 		});
 	}
 
-	return managers[''];
+	return managers[id.toUpperCase()];
+};
+
+export const setActiveManager = (id) => {
+	activeManagerId = id.toUpperCase();
+};
+
+export const getActiveManager = () => {
+	return managers[activeManagerId];
 };

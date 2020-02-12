@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 import tutorialTips, {
-	TutorialManager,
+	getManager,
 	TutorialGroup,
 	TutorialTip,
 } from 'TutorialTips';
@@ -28,10 +28,6 @@ describe('TutorialTips index', () => {
 		expect(tutorialTips.getStore()).not.toBeNull();
 	});
 
-	test('TutorialManager', () => {
-		expect(TutorialManager().constructor.name).toBe('TutorialManager');
-	});
-
 	test('createManager and getManager', () => {
 		const manager = tutorialTips.createManager('m01');
 		expect(tutorialTips.getManager('m01')).toBe(manager);
@@ -44,11 +40,11 @@ describe('TutorialTips index', () => {
 	});
 
 	test('getActiveManager', () => {
-		expect(TutorialManager().constructor.name).toBe('TutorialManager');
+		expect(getManager().constructor.name).toBe('TutorialManager');
 	});
 
 	test('setActiveManager', () => {
-		expect(TutorialManager().constructor.name).toBe('TutorialManager');
+		expect(getManager().constructor.name).toBe('TutorialManager');
 	});
 
 	test('TutorialGroup', () => {
