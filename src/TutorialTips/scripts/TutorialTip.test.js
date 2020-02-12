@@ -7,16 +7,13 @@ tutorialTips.setStore(store);
 
 describe('TutorialTip', () => {
 	test('it has a working constructor', () => {
-		const tip = new TutorialTip(
-			't02',
-			'popup',
-			'Title',
-			'Text',
-			't03',
-			't01',
-			() => true,
-			true
-		);
+		const tip = new TutorialTip('t02', 'Title', 'Text', {
+			type: 'popup',
+			next: 't03',
+			prev: 't01',
+			onStoreChange: () => true,
+			watchStore: true,
+		});
 
 		expect(tip.id).toBe('T02');
 		expect(tip.type).toBe('popup');

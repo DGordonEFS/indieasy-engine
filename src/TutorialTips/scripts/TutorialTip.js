@@ -9,8 +9,6 @@ export default class TutorialTip {
 	set id(value) {
 		this._id = value.toUpperCase();
 	}
-
-	type;
 	title;
 	text;
 	next;
@@ -24,14 +22,18 @@ export default class TutorialTip {
 		else getStore().dispatch(actions.watchTip(this.id));
 	}
 
-	constructor(id, type, title, text, next, prev, onStoreChange, watchStore) {
+	constructor(id, title, text, data) {
+		//} next, prev, onStoreChange, watchStore) {
 		this.id = id;
-		this.type = type;
 		this.title = title;
 		this.text = text;
+
+		if (data) Object.assign(this, data);
+		/*
 		this.next = next;
 		this.prev = prev;
 		this.onStoreChange = onStoreChange;
 		this.watchStore = watchStore;
+		*/
 	}
 }
