@@ -41,14 +41,11 @@ class ThemeManager {
 	};
 
 	setActiveTheme = (id) => {
-		getStore().dispatch(actions.setTheme(id));
+		getStore().dispatch(actions.setTheme(this.getTheme(id)));
 	};
 
 	getActiveTheme = () => {
-		console.log('getActiveTheme');
-		console.log(getStore);
-		console.log(getStore());
-		return this.getTheme(getStore().getState().theming.currentTheme);
+		return getStore().getState().theming.currentTheme;
 	};
 }
 
