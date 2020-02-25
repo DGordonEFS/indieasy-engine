@@ -1,4 +1,4 @@
-import { getStore } from '../store';
+import { getStore } from 'store';
 import { actions } from './store/actions';
 
 class Theme {
@@ -45,6 +45,9 @@ class ThemeManager {
 	};
 
 	getActiveTheme = () => {
+		console.log('getActiveTheme');
+		console.log(getStore);
+		console.log(getStore());
 		return this.getTheme(getStore().getState().theming.currentTheme);
 	};
 }
