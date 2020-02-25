@@ -1,4 +1,4 @@
-import { themes, toolTips, tutorialTips, store } from './index';
+import { theming, toolTips, tutorialTips, store } from './index';
 
 import ThemeManager from './theming/ThemeManager';
 import ToolTipManager from './tooltips/ToolTipManager';
@@ -8,8 +8,8 @@ import { createStore } from './store';
 createStore();
 
 describe('index', () => {
-	test('themes', () => {
-		expect(themes.manager).toBe(ThemeManager);
+	test('theming', () => {
+		expect(theming.manager).toBe(ThemeManager);
 	});
 
 	test('tooltips', () => {
