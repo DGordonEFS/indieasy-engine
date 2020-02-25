@@ -1,4 +1,4 @@
-import TutorialManager, {
+import manager, {
 	createManager,
 	getManager,
 	setActiveManager,
@@ -6,21 +6,19 @@ import TutorialManager, {
 } from './scripts/TutorialManager';
 import TutorialTip from './scripts/TutorialTip';
 import TutorialGroup from './scripts/TutorialGroup';
-import { getStore, setStore, addReducer, setupForTesting } from './store/store';
 import * as actions from './store/actions/actions';
 import * as actionTypes from './store/actions/actionTypes';
 
+import './store';
+
 export default {
 	createManager,
+	manager,
 	getManager,
 	setActiveManager,
 	getActiveManager,
 	TutorialTip,
 	TutorialGroup,
-	getStore,
-	setStore,
-	addReducer,
-	setupForTesting,
 	actions,
 	actionTypes,
 };
@@ -31,9 +29,5 @@ export { setActiveManager };
 export { getActiveManager };
 export { TutorialTip };
 export { TutorialGroup };
-export { getStore };
-export { setStore };
-export { addReducer };
-export { setupForTesting };
 export { actions };
 export { actionTypes };

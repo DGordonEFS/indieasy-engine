@@ -1,4 +1,4 @@
-import { getStore } from '../store/store';
+import { getStore } from 'store';
 import * as actions from '../store/actions/actions';
 
 export default class TutorialTip {
@@ -15,7 +15,7 @@ export default class TutorialTip {
 	prev;
 	onStoreChange;
 	get watchStore() {
-		return getStore().getState().tutorialTips.watchTips[this.id];
+		return getStore().getState().tutorialtips.watchTips[this.id];
 	}
 	set watchStore(value) {
 		if (!value) getStore().dispatch(actions.unwatchTip(this.id));

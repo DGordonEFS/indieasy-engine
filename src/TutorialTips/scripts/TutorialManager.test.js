@@ -1,13 +1,11 @@
-import { createStore } from 'redux';
+import { createStore } from 'store';
 import tutorialTips, {
 	TutorialTip,
 	TutorialGroup,
 	getManager,
 } from 'TutorialTips';
 
-const rootReducer = tutorialTips.addReducer({});
-const store = createStore(rootReducer);
-tutorialTips.setStore(store);
+const store = createStore();
 
 describe('TutorialTips TutorialManager', () => {
 	test('getManager()', () => {

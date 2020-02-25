@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore } from 'store';
 
 import tutorialTips, {
 	getManager,
@@ -6,26 +6,12 @@ import tutorialTips, {
 	TutorialTip,
 } from 'TutorialTips';
 
+const store = createStore();
+
 describe('TutorialTips index', () => {
-	let store;
-
 	test('addReducer', () => {
-		const reducer = {};
-		const rootReducer = tutorialTips.addReducer(reducer);
-		store = createStore(rootReducer);
-
-		expect(store.getState().tutorialTips).not.toBe(undefined);
-		expect(store.getState().tutorialTips).not.toBe(null);
-	});
-
-	test('setStore and getStore', () => {
-		tutorialTips.setStore(store);
-		expect(tutorialTips.getStore()).toBe(store);
-	});
-
-	test('setupForTesting', () => {
-		tutorialTips.setupForTesting;
-		expect(tutorialTips.getStore()).not.toBeNull();
+		expect(store.getState().tutorialtips).not.toBe(undefined);
+		expect(store.getState().tutorialtips).not.toBe(null);
 	});
 
 	test('createManager and getManager', () => {

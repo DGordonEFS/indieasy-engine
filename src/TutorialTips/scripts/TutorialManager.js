@@ -1,5 +1,5 @@
 import * as actions from '../store/actions/actions';
-import { getStore } from '../store/store';
+import { getStore } from 'store';
 
 export class TutorialManager {
 	id;
@@ -61,7 +61,7 @@ export class TutorialManager {
 	};
 
 	getCurrentTip = () => {
-		const currentTipId = getStore().getState().tutorialTips.currentTip;
+		const currentTipId = getStore().getState().tutorialtips.currentTip;
 		if (!currentTipId) return null;
 
 		return this.getTip(currentTipId);

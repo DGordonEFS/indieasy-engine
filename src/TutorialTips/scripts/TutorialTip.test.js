@@ -1,9 +1,7 @@
-import { createStore } from 'redux';
-import tutorialTips, { TutorialTip } from 'TutorialTips';
+import { createStore } from 'store';
+import { TutorialTip } from 'TutorialTips';
 
-const rootReducer = tutorialTips.addReducer({});
-const store = createStore(rootReducer);
-tutorialTips.setStore(store);
+createStore();
 
 describe('TutorialTip', () => {
 	test('it has a working constructor', () => {
