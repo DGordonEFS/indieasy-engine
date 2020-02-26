@@ -15,7 +15,7 @@ export const onStoreCreated = (callback) => {
 export const createStore = () => {
 	store = createBaseStore(combineReducers(reducers));
 	storeCreatedListeners.forEach((listener) => listener());
-	storeCreatedListeners = null;
+	storeCreatedListeners = [];
 	return store;
 };
 
