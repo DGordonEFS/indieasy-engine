@@ -35,6 +35,10 @@ export class TutorialManager {
 		delete this._watchedTips[tip.id];
 	};
 
+	unwatchAll = () => {
+		getWatchedTips().forEach((tip) => this.unwatch(tip));
+	};
+
 	getWatchedTips = () => {
 		return Object.values(this._watchedTips);
 	};
