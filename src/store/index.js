@@ -1,1 +1,1 @@
-export { addReducer, createStore, getStore } from './store';
+export { addReducer, createStore, getStore, onStoreCreated } from './store';

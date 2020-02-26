@@ -1,7 +1,7 @@
 import { createStore } from 'store';
 import tutorialTips, { TutorialTip, TutorialGroup } from 'TutorialTips';
 
-const store = createStore();
+createStore();
 
 describe('TutorialGroup', () => {
 	test('addTip', () => {

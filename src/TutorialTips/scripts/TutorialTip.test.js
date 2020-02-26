@@ -10,7 +10,6 @@ describe('TutorialTip', () => {
 			next: 't03',
 			prev: 't01',
 			onStoreChange: () => true,
-			watchStore: true,
 		});
 
 		expect(tip.id).toBe('T02');
@@ -20,6 +19,5 @@ describe('TutorialTip', () => {
 		expect(tip.next).toBe('t03');
 		expect(tip.prev).toBe('t01');
 		expect(tip.onStoreChange()).toBe(true);
-		expect(tip.watchStore).toBe(true);
 	});
 });

@@ -14,13 +14,6 @@ export default class TutorialTip {
 	next;
 	prev;
 	onStoreChange;
-	get watchStore() {
-		return getStore().getState().tutorialtips.watchTips[this.id];
-	}
-	set watchStore(value) {
-		if (!value) getStore().dispatch(actions.unwatchTip(this.id));
-		else getStore().dispatch(actions.watchTip(this.id));
-	}
 
 	constructor(id, title, text, data) {
 		//} next, prev, onStoreChange, watchStore) {

@@ -2,7 +2,7 @@ import { theming, toolTips, tutorialTips, store } from './index';
 
 import ThemeManager from './theming/ThemeManager';
 import ToolTipManager from './tooltips/ToolTipManager';
-import { getManager } from './tutorialtips/scripts/TutorialManager';
+import TutorialTipManager from './tutorialtips/scripts/TutorialManager';
 import { createStore } from './store';
 
 createStore();
@@ -17,7 +17,7 @@ describe('index', () => {
 	});
 
 	test('tutorialtips', () => {
-		expect(tutorialTips.getManager()).toBe(getManager());
+		expect(tutorialTips.manager).toBe(TutorialTipManager);
 	});
 
 	test('store', () => {

@@ -1,30 +1,22 @@
 import * as actions from '../store/actions/actions';
-import { getStore } from 'store';
+import { getStore, onStoreCreated } from 'store';
 
 export class TutorialManager {
-	id;
 	_tips = {};
-	_watchedTips;
-
-	constructor(id) {
-		this.id = id.toUpperCase();
-	}
+	_watchedTips = {};
 
 	addTip = (tip) => {
 		this._tips[tip.id] = tip;
-		delete this._watchedTips;
 
 		return tip;
 	};
 
 	removeTip = (id) => {
 		delete this._tips[id.toUpperCase()];
-		delete this._watchedTips;
 	};
 
 	clear = () => {
 		this._tips = {};
-		delete this._watchedTips;
 	};
 
 	getTip = (id) => {
@@ -35,13 +27,16 @@ export class TutorialManager {
 		return Object.values(this._tips);
 	};
 
+	watch = (tip) => {
+		this._watchedTips[tip.id] = tip;
+	};
+
+	unwatch = (tip) => {
+		delete this._watchedTips[tip.id];
+	};
+
 	getWatchedTips = () => {
-		if (!this._watchedTips) {
-			this._watchedTips = Object.values(this._tips).filter(
-				(x) => x.onStoreChange
-			);
-		}
-		return [...this._watchedTips];
+		return Object.values(this._watchedTips);
 	};
 
 	addGroup = (group) => {
@@ -92,37 +87,13 @@ export class TutorialManager {
 	};
 }
 
-const managers = {};
-let activeManagerId = '';
-managers[activeManagerId] = new TutorialManager('');
+const instance = new TutorialManager();
+export default instance;
 
-export const createManager = (id) => {
-	const manager = new TutorialManager(id);
-	managers[id.toUpperCase()] = manager;
-	return manager;
-};
-
-let init = false;
-export const getManager = (id = '') => {
-	if (!init) {
-		init = true;
-		getStore().subscribe(() => {
-			const state = getStore().getState();
-			const activeManager = getActiveManager();
-
-			activeManager.getWatchedTips().forEach((tip) => {
-				if (tip.watchStore) tip.onStoreChange(state);
-			});
+export const init = () => {
+	getStore().subscribe(() => {
+		instance.getWatchedTips().forEach((tip) => {
+			tip.onStoreChange(getStore().getState());
 		});
-	}
-
-	return managers[id.toUpperCase()];
-};
-
-export const setActiveManager = (id) => {
-	activeManagerId = id.toUpperCase();
-};
-
-export const getActiveManager = () => {
-	return managers[activeManagerId];
+	});
 };
