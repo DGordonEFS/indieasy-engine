@@ -36,7 +36,7 @@ export class TutorialManager {
 	};
 
 	unwatchAll = () => {
-		getWatchedTips().forEach((tip) => this.unwatch(tip));
+		this.getWatchedTips().forEach((tip) => this.unwatch(tip));
 	};
 
 	getWatchedTips = () => {
