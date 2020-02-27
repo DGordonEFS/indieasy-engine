@@ -7,31 +7,36 @@ const expectedInitialState = {
 	watchTips: {},
 };
 
+const r = reducer.bind(null, 'test');
+
 describe('TutorialTips reducer', () => {
 	test('initial state', () => {
 		expect(initialState).toEqual(expectedInitialState);
 	});
 
 	test('setCurrentTip', () => {
-		const action = actions.setCurrentTip('t01');
-		const expectedAfterState = { ...expectedInitialState, currentTip: 'T01' };
-		expect(reducer(expectedInitialState, action)).toEqual(expectedAfterState);
+		const action = actions.setCurrentTip('test', 't01');
+		const expectedAfterState = {
+			...expectedInitialState,
+			currentTip: 'T01',
+		};
+		expect(r(expectedInitialState, action)).toEqual(expectedAfterState);
 	});
 
 	test('watchTip', () => {
-		const action = actions.watchTip('t01');
+		const action = actions.watchTip('test', 't01');
 		const expectedAfterState = {
 			...expectedInitialState,
 			watchTips: { T01: true },
 		};
-		expect(reducer(expectedInitialState, action)).toEqual(expectedAfterState);
+		expect(r(expectedInitialState, action)).toEqual(expectedAfterState);
 	});
 
 	test('unwatchTip', () => {
-		let action = actions.watchTip('t01');
-		reducer(expectedInitialState, action);
-		action = actions.unwatchTip('t01');
-		expect(reducer(expectedInitialState, action)).toEqual({
+		let action = actions.watchTip('test', 't01');
+		r(expectedInitialState, action);
+		action = actions.unwatchTip('test', 't01');
+		expect(r(expectedInitialState, action)).toEqual({
 			...expectedInitialState,
 		});
 	});

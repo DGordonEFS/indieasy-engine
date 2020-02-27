@@ -1,1 +1,1 @@
-export { default } from './reducer';
+export { default, initialState } from './reducer';

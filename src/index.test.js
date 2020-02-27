@@ -2,7 +2,7 @@ import { theming, toolTips, tutorialTips, store } from './index';
 
 import ThemeManager from './theming/ThemeManager';
 import ToolTipManager from './tooltips/ToolTipManager';
-import TutorialTipManager from './tutorialtips/scripts/TutorialManager';
+import TutorialTipManager from './tutorialtips/scripts/TutorialSystem';
 import { createStore } from './store';
 
 createStore();

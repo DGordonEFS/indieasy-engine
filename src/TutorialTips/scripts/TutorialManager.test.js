@@ -8,7 +8,6 @@ describe('TutorialTips TutorialManager', () => {
 		const tip = new TutorialTip('t01', 'popup', 'Title', 'Text');
 
 		tutorialTips.manager.addTip(tip);
-		tutorialTips.init();
 
 		expect(tutorialTips.manager.getTip(tip.id)).toBe(tip);
 		expect(tutorialTips.manager.getTip('T01')).toBe(tip);
@@ -19,7 +18,6 @@ describe('TutorialTips TutorialManager', () => {
 
 		tutorialTips.manager.addTip(tip);
 		tutorialTips.manager.removeTip(tip.id);
-		tutorialTips.init();
 
 		expect(tutorialTips.manager.getTip(tip.id)).toBe(undefined);
 	});

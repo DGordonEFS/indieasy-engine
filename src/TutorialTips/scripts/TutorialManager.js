@@ -1,7 +1,7 @@
 import * as actions from '../store/actions/actions';
-import { getStore, onStoreCreated } from 'store';
+import { getStore } from 'store';
 
-export class TutorialManager {
+export default class TutorialManager {
 	_tips = {};
 	_watchedTips = {};
 
@@ -56,11 +56,11 @@ export class TutorialManager {
 				throw `TutorialManager.setCurrentTip -- invalid tip id ${id}`;
 			}
 		}
-		getStore().dispatch(actions.setCurrentTip(id));
+		getStore().dispatch(actions.setCurrentTip(this.id, id));
 	};
 
 	getCurrentTip = () => {
-		const currentTipId = getStore().getState().tutorialtips.currentTip;
+		const currentTipId = this.getState().currentTip;
 		if (!currentTipId) return null;
 
 		return this.getTip(currentTipId);
@@ -90,14 +90,3 @@ export class TutorialManager {
 		this.setCurrentTip(null);
 	};
 }
-
-const instance = new TutorialManager();
-export default instance;
-
-export const init = () => {
-	getStore().subscribe(() => {
-		instance.getWatchedTips().forEach((tip) => {
-			tip.onStoreChange(getStore().getState());
-		});
-	});
-};

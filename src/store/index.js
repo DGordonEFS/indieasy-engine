@@ -1,1 +1,7 @@
-export { addReducer, createStore, getStore, onStoreCreated } from './store';
+export {
+	addReducer,
+	createStore,
+	getStore,
+	onStoreCreated,
+	onPreStoreCreated,
+} from './store';

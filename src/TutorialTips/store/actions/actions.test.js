@@ -3,23 +3,26 @@ import * as actions from './actions';
 
 describe('TutorialTips actions', () => {
 	test('setCurrentTip', () => {
-		expect(actions.setCurrentTip('t01')).toEqual({
+		expect(actions.setCurrentTip('test', 't01')).toEqual({
 			type: actionTypes.SET_CURRENT_TIP,
 			value: 'T01',
+			managerId: 'test',
 		});
 	});
 
 	test('watchTip', () => {
-		expect(actions.watchTip('t01')).toEqual({
+		expect(actions.watchTip('test', 't01')).toEqual({
 			type: actionTypes.WATCH_TIP,
 			value: 'T01',
+			managerId: 'test',
 		});
 	});
 
 	test('unwatchTip', () => {
-		expect(actions.unwatchTip('t01')).toEqual({
+		expect(actions.unwatchTip('test', 't01')).toEqual({
 			type: actionTypes.UNWATCH_TIP,
 			value: 'T01',
+			managerId: 'test',
 		});
 	});
 });

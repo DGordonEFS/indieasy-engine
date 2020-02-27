@@ -21,7 +21,9 @@ const unwatchTip = (state, action) => {
 	return { ...state, watchTips: watchTips };
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (managerId, state = initialState, action) => {
+	if (!action || managerId != action.managerId) return state;
+
 	switch (action.type) {
 		case actionTypes.SET_CURRENT_TIP:
 			return setCurrentTip(state, action);
