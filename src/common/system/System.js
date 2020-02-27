@@ -45,13 +45,13 @@ class System {
 	getReducer = () => {
 		const reducerData = {};
 
-		console.log(`System ${this._stateName} getReducer()`);
+		//console.log(`System ${this._stateName} getReducer()`);
 		Object.values(this._managers).forEach((manager) => {
-			console.log(`   - adding reducer for ${manager.id} : ${manager.reducer}`);
+			//console.log(`   - adding reducer for ${manager.id} : ${manager.reducer}`);
 			reducerData[manager.id.toLowerCase()] = manager.reducer;
 		});
 
-		console.log(reducerData);
+		//console.log(reducerData);
 
 		return combineReducers(reducerData);
 	};
