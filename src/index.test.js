@@ -1,9 +1,10 @@
-import { theming, toolTips, tutorialTips, store } from './index';
+import { theming, toolTips, tutorialTips, store, utils } from './index';
 
 import ThemeManager from './theming/ThemeManager';
 import ToolTipManager from './tooltips/ToolTipManager';
 import TutorialTipManager from './tutorialtips/scripts/TutorialSystem';
 import { createStore } from './store';
+import { url } from './utils';
 
 createStore();
 
@@ -22,5 +23,9 @@ describe('index', () => {
 
 	test('store', () => {
 		expect(store.createStore).toBe(createStore);
+	});
+
+	test('utils url', () => {
+		expect(utils.url).toBe(url);
 	});
 });
