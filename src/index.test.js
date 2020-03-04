@@ -1,7 +1,7 @@
 import { theming, toolTips, tutorialTips, store, utils } from './index';
 
 import ThemeManager from './theming/ThemeManager';
-import ToolTipManager from './tooltips/ToolTipManager';
+import ToolTipManager from './tooltips/ToolTipSystem';
 import TutorialTipManager from './tutorialtips/scripts/TutorialSystem';
 import { createStore } from './store';
 import { url } from './utils';

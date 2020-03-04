@@ -12,14 +12,14 @@ const tip = { x: 5, y: 5, data: {} };
 describe('ToolTips ToolTips', () => {
 	test('show', () => {
 		toolTips.manager.show(tip);
-		expect(store.getState().tooltips).toEqual({
+		expect(toolTips.manager.getState()).toEqual({
 			...expectedInitialState,
 			currentToolTip: tip,
 		});
 	});
 	test('hide', () => {
 		toolTips.manager.hide();
-		expect(store.getState().tooltips).toEqual(expectedInitialState);
+		expect(toolTips.manager.getState()).toEqual(expectedInitialState);
 	});
 
 	test('currentToolTip', () => {

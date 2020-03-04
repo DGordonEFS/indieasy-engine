@@ -4,7 +4,9 @@ export const initialState = {
 	currentToolTip: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (managerId, state = initialState, action) => {
+	if (!action || managerId != action.managerId) return state;
+
 	switch (action.type) {
 		case actionTypes.SHOW:
 			return { ...state, currentToolTip: action.value };

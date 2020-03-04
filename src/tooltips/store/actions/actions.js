@@ -1,14 +1,16 @@
 import * as actionTypes from './actionTypes';
 
-export const show = toolTip => {
-  return {
-    type: actionTypes.SHOW,
-    value: toolTip
-  };
+export const show = (managerId, toolTip) => {
+	return {
+		type: actionTypes.SHOW,
+		managerId: managerId,
+		value: toolTip,
+	};
 };
 
-export const hide = () => {
-  return {
-    type: actionTypes.HIDE
-  };
+export const hide = (managerId) => {
+	return {
+		type: actionTypes.HIDE,
+		managerId: managerId,
+	};
 };

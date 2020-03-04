@@ -3,19 +3,19 @@ import * as actions from './store/actions/actions';
 
 class ToolTipManager {
 	get currentToolTip() {
-		return getStore().getState().tooltips.currentToolTip;
+		return this.getState().currentToolTip;
 	}
 
 	show = (toolTip) => {
-		getStore().dispatch(actions.show(toolTip));
+		getStore().dispatch(actions.show(this.id, toolTip));
 	};
 
 	hide = () => {
-		getStore().dispatch(actions.hide());
+		getStore().dispatch(actions.hide(this.id));
 	};
 }
 
-export default new ToolTipManager();
+export default ToolTipManager;
 
 class ToolTip {
 	constructor(x, y, data) {

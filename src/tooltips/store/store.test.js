@@ -1,6 +1,8 @@
 import './store';
 import { createStore } from 'store';
 
+import manager from '../ToolTipSystem';
+
 const store = createStore();
 
 const expectedInitialState = {
@@ -9,6 +11,7 @@ const expectedInitialState = {
 
 describe('ToolTips store', () => {
 	test('initial state', () => {
-		expect(store.getState().tooltips).toEqual(expectedInitialState);
+		const initialState = manager.getState();
+		expect(initialState).toEqual(expectedInitialState);
 	});
 });

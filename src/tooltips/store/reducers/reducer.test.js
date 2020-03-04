@@ -6,6 +6,8 @@ const expectedInitialState = {
 	currentToolTip: null,
 };
 
+const r = reducer.bind(null, 'test');
+
 describe('ToolTips reducer', () => {
 	test('initial state', () => {
 		expect(initialState).toEqual(expectedInitialState);
@@ -13,15 +15,15 @@ describe('ToolTips reducer', () => {
 
 	test('show', () => {
 		const tip = { x: 5, y: 5, data: {} };
-		const action = actions.show(tip);
+		const action = actions.show('test', tip);
 		const expectedAfterState = { ...expectedInitialState, currentToolTip: tip };
-		expect(reducer(expectedInitialState, action)).toEqual(expectedAfterState);
+		expect(r(expectedInitialState, action)).toEqual(expectedAfterState);
 	});
 
 	test('hide', () => {
 		const tip = { x: 5, y: 5, data: {} };
-		const action = actions.hide();
+		const action = actions.hide('test');
 		const expectedAfterState = { ...expectedInitialState, currentToolTip: tip };
-		expect(reducer(expectedAfterState, action)).toEqual(expectedInitialState);
+		expect(r(expectedAfterState, action)).toEqual(expectedInitialState);
 	});
 });
