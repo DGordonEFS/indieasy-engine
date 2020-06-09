@@ -19,6 +19,7 @@ describe('Theming ThemeManager', () => {
 		themes.manager.setActiveTheme('test');
 		expect(themes.manager.getActiveTheme()).toBe(theme);
 		themes.manager.setActiveTheme('testa');
-		expect(themes.manager.getActiveTheme()).toBe(undefined);
+		const themeA = themes.manager.getTheme('testa');
+		expect(themes.manager.getActiveTheme()).toBe(themeA);
 	});
 });

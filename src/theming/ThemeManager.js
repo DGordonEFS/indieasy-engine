@@ -37,7 +37,7 @@ class ThemeManager {
 	};
 
 	getTheme = (id) => {
-		return this._themes[id.toUpperCase()];
+		return this._themes[id.toUpperCase()] || this.createTheme(id);
 	};
 
 	setActiveTheme = (id) => {

@@ -1,6 +1,6 @@
 {
   "name": "@indieasy.software/indieasy-engine",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Core engine library.",
   "main": "build/index.js",
   "scripts": {
@@ -45,7 +45,7 @@
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "jest": "^25.1.0",
+    "jest": "^25.5.4",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
